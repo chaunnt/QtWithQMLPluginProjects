@@ -1,5 +1,5 @@
-import QtQuick 2.11
-import QtQuick.Window 2.11
+import QtQuick 2.0
+import QtQuick.Window 2.0
 import SampleModules 1.0
 
 Window {
@@ -9,5 +9,9 @@ Window {
     title: qsTr("Hello World")
     SampleModules{
 
+    }
+
+    SampleQML{
+        anchors.fill:parent
     }
 }

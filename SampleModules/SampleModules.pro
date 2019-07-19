@@ -1,3 +1,6 @@
+#This file is generated from QtCreator
+#Using QtCreator -> File -> New File or Project
+#Library -> Qt Quick 2 Extension Plugin
 TEMPLATE = lib
 TARGET = SampleModules
 QT += qml quick
@@ -8,9 +11,13 @@ uri = SampleModules
 version = 1.0
 
 # Input
-SOURCES +=         samplemodules_plugin.cpp         samplemodules.cpp
+SOURCES += \
+    samplemodules_plugin.cpp \
+    samplemodules.cpp
 
-HEADERS +=         samplemodules_plugin.h         samplemodules.h
+HEADERS += \
+    samplemodules_plugin.h \
+    samplemodules.h
 
 DISTFILES = qmldir
 
@@ -29,3 +36,6 @@ unix {
     target.path = $$installPath
     INSTALLS += target qmldir
 }
+
+RESOURCES += \
+    qml.qrc

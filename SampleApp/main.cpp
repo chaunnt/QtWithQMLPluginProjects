@@ -14,7 +14,11 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.addImportPath("qrc:///");
+
+    // The binary in the desktop build is a level below the root of the project
+    // This allows us to find all the plugins, without doing an install.
+    engine.addImportPath("..");
+
     engine.load(url);
 
     return app.exec();
