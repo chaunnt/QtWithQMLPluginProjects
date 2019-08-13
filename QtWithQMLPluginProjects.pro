@@ -1,8 +1,10 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    SampleModules \
+    BasePlugins \
+    SamplePlugins \
     SampleApp
 
 
-SampleApp.depends = SampleModules
+SampleApp.depends = BasePlugins SamplePlugins
+SamplePlugins.depends = BasePlugins

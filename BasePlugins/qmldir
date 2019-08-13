@@ -1,0 +1,4 @@
+module BasePlugins
+plugin BasePlugins
+classname BasePlugins
+typeinfo plugins.qmltypes

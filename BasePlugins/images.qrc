@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Applications">
+        <file>Images/SoundWaveBg.jpg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/Applications">
+        <file>QML/BaseApp.qml</file>
+        <file>QML/BaseQMLSettings.qml</file>
+    </qresource>
+    <qresource prefix="/Controls">
+        <file>QML/Button/BaseButton.qml</file>
+        <file>QML/Layout/BaseLayout.qml</file>
+        <file>QML/Theme/DarkMode.qml</file>
+        <file>QML/Theme/NormalMode.qml</file>
+        <file>QML/Theme/Theme.qml</file>
+    </qresource>
+</RCC>
