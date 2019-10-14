@@ -9,5 +9,9 @@
         <file>QML/Theme/DarkMode.qml</file>
         <file>QML/Theme/NormalMode.qml</file>
         <file>QML/Theme/Theme.qml</file>
+        <file>QML/Dialogs/Bootstrap_ProcessBarDialog.qml</file>
+        <file>QML/Controls/Bootstrap_ProcessBar.qml</file>
+        <file>QML/Dialogs/Bootstrap_MessageDialog.qml</file>
+        <file>QML/Dialogs/Bootstrap_WaitingDialog.qml</file>
     </qresource>
 </RCC>

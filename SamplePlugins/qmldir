@@ -1,4 +1,0 @@
-module SamplePlugins
-plugin SamplePlugins
-classname SamplePlugins
-typeinfo plugins.qmltypes

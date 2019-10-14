@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Sounds/1463.wav</file>
-        <file>Images/PluginLogo.png</file>
-    </qresource>
-</RCC>

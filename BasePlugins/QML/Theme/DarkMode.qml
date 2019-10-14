@@ -6,17 +6,13 @@ QtObject {
         Provides colours/assets/fonts for general elements.
      */
     property QtObject general: QtObject {
-        readonly property color titleColor: "#2E90BF"
-        readonly property string logo: "/Applications/Images/SoundWaveBg.jpg"
-        readonly property string titleFont: "Helvetica"
+        readonly property color baseColor: "#E5CA05"
+        readonly property color baseSelectingColor: "#0B132D"
+        readonly property color baseTextColor: "#0B132D"
+        readonly property color normalFontSize: 15 * dpiToPixelValue
+        readonly property real  bigFontSize:  20 * dpiToPixelValue
+        readonly property real  smallFontSize:  12 * dpiToPixelValue
     }
 
-    /*!
-        Provides colours/assets/fonts for login (For example) screen
-    */
-    property QtObject loginScreen: QtObject {
-        readonly property color textBoxColor: "#2E90BF"
-        readonly property string logo: "/Applications/Images/SoundWaveBg.jpg"
-        readonly property string textBoxFont: "Tahoma"
-    }
+
 }

@@ -2,12 +2,11 @@
 #Using QtCreator -> File -> New File or Project
 #Library -> Qt Quick 2 Extension Plugin
 TEMPLATE = lib
-TARGET = BasePlugins
+TARGET = GeneralPlugins
 CONFIG += plugin c++11
 
-
 TARGET = $$qtLibraryTarget($$TARGET)
-uri = BasePlugins
+uri = GeneralPlugins
 version = 1.0
 
 !include(../Common.pri) {
@@ -15,18 +14,11 @@ version = 1.0
 }
 
 # Input
-SOURCES += BasePlugins.cpp
-HEADERS += BasePlugins.h
+SOURCES += GeneralPlugins.cpp
+HEADERS += GeneralPlugins.h
 
-SOURCES += Actions/ActionDispatcher.cpp
-HEADERS += Actions/ActionDispatcher.h
-
-SOURCES += Actions/ActionListener.cpp
-HEADERS += Actions/ActionListener.h
-
-HEADERS += Actions/ActionSource.h
-
-HEADERS += Actions/IActionListener.h
+HEADERS += GeneralPresenter.h
+SOURCES += GeneralPresenter.cpp
 
 DISTFILES = qmldir
 
@@ -46,8 +38,9 @@ unix {
     INSTALLS += target qmldir
 }
 
-RESOURCES += qml.qrc
-RESOURCES += images.qrc
+RESOURCES += \
+    qml.qrc \
+    images.qrc
 
 !include(../QMLPluginsCommon.pri) {
     error("Couldn't include QMLPluginsCommon.pri")

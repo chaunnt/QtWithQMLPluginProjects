@@ -1,6 +1,6 @@
-module BasePlugins
-plugin BasePlugins
-classname BasePlugins
+module GeneralPlugins
+plugin GeneralPlugins
+classname GeneralPlugins
 typeinfo plugins.qmltypes
 depends QtQuick 2.0
 depends QtQuick.Controls 2.0

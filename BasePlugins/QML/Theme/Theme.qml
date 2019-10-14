@@ -20,10 +20,7 @@ QtObject {
      */
     property QtObject general: themeLoader.item.general
 
-    /*!
-        Provides colours/assets/fonts for login (For example) screen
-     */
-    property QtObject loginScreen: themeLoader.item.loginScreen
+
 
     /*!
         Loads the theme QML file dynamically when the \l theme property changes.
