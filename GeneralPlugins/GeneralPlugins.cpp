@@ -5,6 +5,8 @@
 
 void GeneralPlugins::registerTypes(const char* uri)
 {
-    // @uri SampleModules
-    qmlRegisterType(QUrl("qrc:///QML/SampleView.qml"), uri, 1, 0, "SampleView");
+    // @uri GeneralPlugins
+
+    // C++ Types
+    qmlRegisterType<GeneralPresenter, 0>(uri, 1, 0, "GeneralPresenter");
 }

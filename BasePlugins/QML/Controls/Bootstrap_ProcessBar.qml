@@ -31,7 +31,7 @@ Item {
     }
     onPercentageValueChanged: {
         if (percentageValue === 100){
-            Action.dispatch("ProcessBarFinished")
+            Action.dispatch(ActionStrings.dialogActions.processBarFinished)
         }
     }
 }

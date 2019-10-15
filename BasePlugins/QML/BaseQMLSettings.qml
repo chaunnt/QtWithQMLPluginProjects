@@ -16,7 +16,7 @@ QtObject {
     readonly property real screenHeight: Screen.height
 
     /*!
-        The basic height of 1 button
+        The dpi of screen
      */
     property real dpiToPixelValue: 1
 
@@ -55,4 +55,9 @@ QtObject {
         return calculateRatio
     }
 
+    property string activeScreenName: ""
+
+    Component.onCompleted: {
+        dpiToPixelValue = appDPI
+    }
 }

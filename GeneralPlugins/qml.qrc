@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>QML/SampleView.qml</file>
+        <file>QML/PolicyScreen.qml</file>
     </qresource>
 </RCC>

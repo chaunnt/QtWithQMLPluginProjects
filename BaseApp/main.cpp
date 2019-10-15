@@ -1,4 +1,4 @@
-#include "AppManager.h"
+#include "ApplicationInitializer.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -11,9 +11,11 @@ int main(int argc, char* argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    QScopedPointer<AppManager> appManager;
-    appManager.reset(new AppManager);
-    appManager->initApplication();
+
+    QScopedPointer<ApplicationInitializer> initializer;
+    initializer.reset(new ApplicationInitializer);
+
+    engine.rootContext()->setContextProperty(QLatin1String("applicationInitializer"), initializer.data());
 
     // The binary in the desktop build is a level below the root of the project
     // This allows us to find all the plugins, without doing an install.
@@ -31,7 +33,7 @@ int main(int argc, char* argv[])
         dpi = 1;//ldpi
     }
 
-    engine.rootContext()->setContextProperty("dpiToPixelValue",dpi);
+    engine.rootContext()->setContextProperty("appDPI",dpi);
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

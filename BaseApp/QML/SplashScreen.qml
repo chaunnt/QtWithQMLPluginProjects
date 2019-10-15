@@ -4,7 +4,7 @@ import BasePlugins 1.0
 Item {
     Image {
         id: imgLogo
-        source: "qrc:/AppLogo.png"
+        source: "qrc:/Applications/Images/AppLogo.png"
         fillMode: Image.PreserveAspectFit
         width: parent.width / 4 * 3
         anchors.centerIn: parent
@@ -12,11 +12,11 @@ Item {
 
     Timer {
         id: tmStartApp
-        interval: 1000
+        interval: 2000
         repeat: false
         running: true
         onTriggered: {
-            Action.dispatch("FinishSplash")
+            Action.dispatch(ActionStrings.baseApp.startInitSequence)
         }
     }
 }

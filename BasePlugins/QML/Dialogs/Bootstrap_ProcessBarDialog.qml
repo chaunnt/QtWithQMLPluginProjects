@@ -4,7 +4,7 @@ import BasePlugins 1.0
 
 Item {
     id:popupDialog
-    property string popupMessage: qsTr("Retrieving Insight")
+    property string popupMessage: ""
     property alias percentageValue: itemProcessBar.percentageValue
     Rectangle {
         width: parent.width
@@ -19,18 +19,18 @@ Item {
 
         Rectangle {
             width: parent.width / 6 * 4
-            height: txtPopupMessage.height + itemProcessBar.height + txtCancelMessage.height + 15 * dpiToPixelValue
+            height: txtPopupMessage.height + itemProcessBar.height + txtCancelMessage.height + 15 * Settings.dpiToPixelValue
             color: "white"
-            radius: 10 * dpiToPixelValue
+            radius: 10 * Settings.dpiToPixelValue
             border.color: "lightgray"
             border.width: 1
             anchors.centerIn: parent
             Text {
                 id: txtPopupMessage
                 text: popupMessage
-                width: parent.width - 10 * dpiToPixelValue
+                width: parent.width - 10 * Settings.dpiToPixelValue
                 anchors.top: parent.top
-                anchors.topMargin: 5 * dpiToPixelValue
+                anchors.topMargin: 5 * Settings.dpiToPixelValue
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: Settings.baseButtonHeight
                 font.pixelSize: Theme.general.normalFontSize
@@ -40,7 +40,7 @@ Item {
             }
             Bootstrap_ProcessBar {
                 id: itemProcessBar
-                width: parent.width - 20 * dpiToPixelValue
+                width: parent.width - 20 * Settings.dpiToPixelValue
                 height: Settings.baseButtonHeight
                 anchors.centerIn: parent
             }
@@ -49,7 +49,7 @@ Item {
                 text: qsTr("Cancel")
                 width: parent.width
                 anchors.bottom: parent.bottom
-                height: 40 * dpiToPixelValue
+                height: Settings.baseButtonHeight
                 font.pixelSize: Theme.general.normalFontSize
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -57,7 +57,7 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        Action.dispatch("CancelProcessBarDialog", {percentageValue: popupDialog.percentageValue})
+                        Action.dispatch(ActionStrings.dialogActions.cancelProcessBarDialog, {percentageValue: popupDialog.percentageValue})
                     }
                 }
             }
@@ -65,7 +65,7 @@ Item {
         ActionListener {
             actions: ["ProcessBarFinished"]
             onTriggered: {
-                Action.dispatch("CloseProcessBarDialog")
+                Action.dispatch(ActionStrings.dialogActions.closeProcessBarDialog)
             }
         }
     }

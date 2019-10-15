@@ -5,12 +5,17 @@ TEMPLATE = subdirs
 }
 
 SUBDIRS += \
+    Framework \
+    Setting \
+    SystemFunctions \
     BasePlugins \
     GeneralPlugins \
-    SystemFunctions \
-    Framework \
+
     BaseApp
 
-BaseApp.depends = BasePlugins GeneralPlugins SystemFunctions Framework
+CONFIG += ordered
+Setting.depends = Framework
+SystemFunctions.depends = Framework Setting
+BasePlugins = Framework Setting SystemFunctions
 GeneralPlugins.depends = BasePlugins SystemFunctions Framework
-SystemFunctions.depends = Framework
+BaseApp.depends = BasePlugins GeneralPlugins SystemFunctions Framework Setting

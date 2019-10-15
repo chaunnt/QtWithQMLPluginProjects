@@ -2,44 +2,24 @@ import QtQuick 2.0
 import BasePlugins 1.0
 import GeneralPlugins 1.0
 
-Item {
+BaseScreen {
+    screenName: "HomeScreen"
     Loader {
         id:appLoader
         anchors.top: recHeader.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-
     }
-
-    property string activeApp
 
     Component.onCompleted: {
-        appLoader.setSource("qrc:/QML/ScanDevicesScreen.qml")
-        activeApp = "DevicesList"
+        appLoader.setSource("qrc:/QML/LotteryHomeScreen.qml")
     }
 
     ActionListener {
-        actions: ["DisplayDeviceList"]
+        actions: ["DisplayLottery"]
         onTriggered: {
-            appLoader.setSource("qrc:/QML/ScanDevicesScreen.qml")
-            txtHeader.text = qsTr("Devices List")
-            activeApp = "DevicesList"
-        }
-    }
-
-    ActionListener {
-        actions: ["ShowReports"]
-
-        onTriggered: {
-            appLoader.setSource("qrc:/QML/SmartAdsPieReports_Tab.qml")
-            txtHeader.text = qsTr("Reports")
-            activeApp = "Reports"
-
-            Action.dispatch("ReportUpdateData",
-                                {
-                                    locationData: data.selectedDevice
-                                })
+            appLoader.setSource("qrc:/QML/LotteryHomeScreen.qml")
         }
     }
 
@@ -49,10 +29,10 @@ Item {
         height: Settings.baseButtonHeight
         color: Theme.general.baseColor
         Text {
-            id: txtHeader
-            text: qsTr("Device List")
-            font.pixelSize: 24
+            text: Settings.activeScreenName
+            font.pixelSize: Theme.general.bigFontSize
             anchors.centerIn: parent
+            color: Theme.general.baseTextColor
         }
         Image {
             source: "qrc:/Applications/Images/LeftArrow_White.png"
@@ -61,13 +41,11 @@ Item {
             width: height
             anchors.verticalCenter: parent.verticalCenter
             x: 5
-            visible: activeApp !== "DevicesList"
+            visible: Settings.activeScreenName !== "HomeScreen"
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    if (activeApp !== "DevicesList") {
-                        Action.dispatch("DisplayDeviceList")
-                    }
+
                 }
             }
         }

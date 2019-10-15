@@ -2,6 +2,9 @@
     <qresource prefix="/Applications">
         <file>QML/BaseApp.qml</file>
         <file>QML/BaseQMLSettings.qml</file>
+        <file>QML/BaseScreen.qml</file>
+        <file>Translations/ActionStrings.qml</file>
+        <file>Translations/BasePluginsStrings.qml</file>
     </qresource>
     <qresource prefix="/Controls">
         <file>QML/Button/BaseButton.qml</file>
@@ -9,9 +12,16 @@
         <file>QML/Theme/DarkMode.qml</file>
         <file>QML/Theme/NormalMode.qml</file>
         <file>QML/Theme/Theme.qml</file>
+        <file>QML/Button/Bootstrap_DropDown.qml</file>
+        <file>QML/Button/Bootstrap_DropDownNaked.qml</file>
+        <file>QML/Button/Bootstrap_TextboxWithIcon.qml</file>
+        <file>QML/Button/Bootstrap_RadioButtons.qml</file>
+        <file>QML/Controls/Bootstrap_RadioButtonList.qml</file>
+        <file>QML/Controls/Bootstrap_DropdownPanel.qml</file>
         <file>QML/Dialogs/Bootstrap_ProcessBarDialog.qml</file>
         <file>QML/Controls/Bootstrap_ProcessBar.qml</file>
         <file>QML/Dialogs/Bootstrap_MessageDialog.qml</file>
         <file>QML/Dialogs/Bootstrap_WaitingDialog.qml</file>
+        <file>QML/Rectangles/VerticalHalfRounded.qml</file>
     </qresource>
 </RCC>

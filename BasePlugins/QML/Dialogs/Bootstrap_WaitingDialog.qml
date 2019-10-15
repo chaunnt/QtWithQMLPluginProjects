@@ -18,18 +18,18 @@ Item {
         }
         Rectangle {
             width: parent.width / 6 * 4
-            height: txtPopupMessage.height + imgWaitingIndicator.height + txtCancelMessage.height + 15 * dpiToPixelValue
+            height: txtPopupMessage.height + imgWaitingIndicator.height + txtCancelMessage.height + 15 * Settings.dpiToPixelValue
             color: "white"
-            radius: 10 * dpiToPixelValue
+            radius: 10 * Settings.dpiToPixelValue
             border.color: "gray"
             border.width: 1
             anchors.centerIn: parent
             Text {
                 id: txtPopupMessage
                 text: popupMessage
-                width: parent.width - 10 * dpiToPixelValue
+                width: parent.width - 10 * Settings.dpiToPixelValue
                 anchors.top: parent.top
-                anchors.topMargin: 5 * dpiToPixelValue
+                anchors.topMargin: 5 * Settings.dpiToPixelValue
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: Settings.baseButtonHeight
                 font.pixelSize: Theme.general.normalFontSize
@@ -60,7 +60,7 @@ Item {
                 text: qsTr("Cancel")
                 width: parent.width
                 anchors.bottom: parent.bottom
-                height: 40 * dpiToPixelValue
+                height: Settings.baseButtonHeight
                 font.pixelSize: Theme.general.normalFontSize
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -68,7 +68,7 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        Action.dispatch("CancelWaitingDialog")
+                        Action.dispatch(ActionStrings.dialogActions.cancelWaitingDialog)
                     }
                 }
             }

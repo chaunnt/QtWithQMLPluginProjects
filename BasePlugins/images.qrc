@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/Applications">
-        <file>Images/SoundWaveBg.jpg</file>
+        <file>Images/control_dropdown.png</file>
+        <file>Images/AppBanner.png</file>
+        <file>Images/AppIcon.png</file>
+        <file>Images/AppLogo.png</file>
+        <file>Images/Spinner_Black.png</file>
+        <file>Images/LeftArrow_White.png</file>
     </qresource>
 </RCC>

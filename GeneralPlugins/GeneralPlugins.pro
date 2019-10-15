@@ -38,9 +38,8 @@ unix {
     INSTALLS += target qmldir
 }
 
-RESOURCES += \
-    qml.qrc \
-    images.qrc
+RESOURCES += qml.qrc
+RESOURCES += images.qrc
 
 !include(../QMLPluginsCommon.pri) {
     error("Couldn't include QMLPluginsCommon.pri")

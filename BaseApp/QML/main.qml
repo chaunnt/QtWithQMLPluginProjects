@@ -3,6 +3,7 @@ import QtQuick.Controls 2.0
 
 import BasePlugins 1.0
 import GeneralPlugins 1.0
+import LotteryPlugins 1.0
 
 ApplicationWindow {
     id: mainSmartAds
@@ -16,18 +17,34 @@ ApplicationWindow {
     // the charts which is currently displaying. This result now is good, since we do not need to worry about this change
     height: 1000 //1280
 
+    property QtObject runtimeSetting: QtObject {
+        property string activeApp: ""
+    }
+
     Loader {
         id:mainLoader
         source: "qrc:/SplashScreen.qml"
         anchors.fill: parent
     }
+
     ActionListener {
-        actions: ["FinishSplash"]
+        actions: [ActionStrings.baseApp.initFinished]
         onTriggered: {
             mainLoader.setSource("qrc:/HomeScreen.qml")
         }
     }
 
+    ActionListener {
+        actions: [ActionStrings.baseApp.startInitSequence]
+        onTriggered: {
+            mainLoader.setSource("qrc:/InitializeScreen.qml")
+        }
+    }
+
+    Component.onCompleted: {
+        mainLoader.setSource("qrc:/SplashScreen.qml")
+    }
+    
     Item {
         id: popupItem
         anchors.fill: parent
@@ -38,13 +55,13 @@ ApplicationWindow {
         Bootstrap_MessageDialog {
             anchors.fill: parent
             popupMessage: popupItem.popupMessage
-            visible: popupItem.popupAction === "ShowMessageDialog"
+            visible: popupItem.popupAction === ActionStrings.dialogActions.showMessageDialog
         }
         Bootstrap_ProcessBarDialog {
             id: popupBootstrap_ProcessBarDialog
             anchors.fill: parent
             popupMessage: popupItem.popupMessage
-            visible: popupItem.popupAction === "ShowProcessBarDialog"
+            visible: popupItem.popupAction === ActionStrings.dialogActions.showProcessBarDialog
             Binding {
                 target: popupBootstrap_ProcessBarDialog
                 property: "percentageValue"
@@ -55,10 +72,14 @@ ApplicationWindow {
         Bootstrap_WaitingDialog {
             anchors.fill: parent
             popupMessage: popupItem.popupMessage
-            visible: popupItem.popupAction === "ShowWaitingDialog"
+            visible: popupItem.popupAction === ActionStrings.dialogActions.showWaitingDialog
         }
         ActionListener {
-            actions: [ "ShowProcessBarDialog","ShowMessageDialog","ShowWaitingDialog" ]
+            actions: [
+                ActionStrings.dialogActions.showProcessBarDialog,
+                ActionStrings.dialogActions.showMessageDialog,
+                ActionStrings.dialogActions.showWaitingDialog
+            ]
             onTriggered: {
                 popupItem.visible = true
                 if(data.settingObject !== undefined){
@@ -67,18 +88,16 @@ ApplicationWindow {
                 }
                 popupItem.popupMessage = data.popupMessage
                 popupItem.popupAction = action
-                console.log(popupItem.settingName)
-                console.log(data.settingName)
             }
         }
 
         ActionListener {
             actions:[
-                "CloseProcessBarDialog",
-                "CancelProcessBarDialog",
-                "CloseMessageDialog",
-                "CloseWaitingDialog",
-                "CancelWaitingDialog"
+                ActionStrings.dialogActions.closeProcessBarDialog,
+                ActionStrings.dialogActions.cancelProcessBarDialog,
+                ActionStrings.dialogActions.closeMessageDialog,
+                ActionStrings.dialogActions.closeWaitingDialog,
+                ActionStrings.dialogActions.cancelWaitingDialog
             ]
             onTriggered: {
                 popupItem.visible = false

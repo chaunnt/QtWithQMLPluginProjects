@@ -23,10 +23,13 @@ HEADERS += SystemFunctionsOwner.h
 INCLUDEPATH += ../
 
 QMAKE_LFLAGS *= -L../Framework
+QMAKE_LFLAGS *= -L../Setting
 
-LIBS *= -L../Framework -lFramework
+DEPENDPATH += . ../Framework
+DEPENDPATH += . ../Setting
 
-TARGET = $$qtLibraryTarget($$TARGET)
+LIBS += -L../Framework/ -lFramework
+LIBS += -L../Setting/ -lSetting
 
 unix {
     target.path = $$TARGET_INSTALL_PATH
@@ -37,6 +40,5 @@ unix {
     INSTALLS += strip
 }
 
-QMAKE_LFLAGS *= -L../Framework
-
-LIBS *= -L../Framework -lFramework
+TARGET = $$qtLibraryTarget($$TARGET)
+INSTALLS += $$TARGET_INSTALL_PATH

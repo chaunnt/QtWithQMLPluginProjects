@@ -1,4 +1,9 @@
 CONFIG += c++11
+
+!include(../Common.pri) {
+    error("Couldn't include Common.pri")
+}
+
 TEMPLATE = app
 QT += gui quick qml
 # The following define makes your compiler emit warnings if you use
@@ -6,7 +11,8 @@ QT += gui quick qml
 # depend on your compiler). Refer to the documentation for the
 # deprecated API to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
-
+TARGET = $$qtLibraryTarget(Vietlot)
+INSTALLS += $$TARGET_INSTALL_PATH
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
@@ -20,15 +26,12 @@ android: {
         android/AndroidManifest.xml
 }
 
-!include(../Common.pri) {
-    error("Couldn't include Common.pri")
-}
-
 SOURCES += main.cpp
 
-SOURCES += AppManager.cpp
-HEADERS += AppManager.h
+SOURCES += ApplicationInitializer.cpp
+HEADERS += ApplicationInitializer.h
 
+INCLUDEPATH += ../
 RESOURCES += QML/qml.qrc
 RESOURCES += resource/images.qrc
 
@@ -76,31 +79,33 @@ DISTFILES += \
     ios/Icon@2x.png
 
 QMAKE_LFLAGS *= -L../Framework
+QMAKE_LFLAGS *= -L../Setting
 QMAKE_LFLAGS *= -L../SystemFunctions
 QMAKE_LFLAGS *= -L../GeneralPlugins
 QMAKE_LFLAGS *= -L../BasePlugins
 
 DEPENDPATH += . ../Framework
+DEPENDPATH += . ../Setting
 DEPENDPATH += . ../SystemFunctions
 DEPENDPATH += . ../GeneralPlugins
 DEPENDPATH += . ../BasePlugins
 
 LIBS += -L../SystemFunctions/ -lSystemFunctions
 LIBS += -L../Framework/ -lFramework
+LIBS += -L../Setting/ -lSetting
 LIBS += -L../GeneralPlugins/ -lGeneralPlugins
 LIBS += -L../BasePlugins/ -lBasePlugins
 
 android: {
     ANDROID_EXTRA_LIBS += $$OUT_PWD/../SystemFunctions/libSystemFunctions.so
     ANDROID_EXTRA_LIBS += $$OUT_PWD/../Framework/libFramework.so
+    ANDROID_EXTRA_LIBS += $$OUT_PWD/../Setting/libSetting.so
     ANDROID_EXTRA_LIBS += $$OUT_PWD/../GeneralPlugins/libGeneralPlugins.so
     ANDROID_EXTRA_LIBS += $$OUT_PWD/../BasePlugins/libBasePlugins.so
 
     ANDROID_EXTRA_PLUGINS += $$OUT_PWD/../SystemFunctions
     ANDROID_EXTRA_PLUGINS += $$OUT_PWD/../Framework
+    ANDROID_EXTRA_PLUGINS += $$OUT_PWD/../Setting
     ANDROID_EXTRA_PLUGINS += $$OUT_PWD/../GeneralPlugins
     ANDROID_EXTRA_PLUGINS += $$OUT_PWD/../BasePlugins
 }
-
-TARGET = $$qtLibraryTarget($$TARGET)
-INSTALLS += $$TARGET_INSTALL_PATH

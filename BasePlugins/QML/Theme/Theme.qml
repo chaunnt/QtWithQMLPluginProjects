@@ -20,8 +20,6 @@ QtObject {
      */
     property QtObject general: themeLoader.item.general
 
-
-
     /*!
         Loads the theme QML file dynamically when the \l theme property changes.
 

@@ -6,12 +6,15 @@ QtObject {
         Provides colours/assets/fonts for general elements.
      */
     property QtObject general: QtObject {
-        readonly property color baseColor: "#E5CA05"
-        readonly property color baseSelectingColor: "#0B132D"
+        readonly property color appBackgroundColor: "#7CCDFC"
+        readonly property color baseColor: "#7CCDFC"
+        readonly property color baseSelectingColor: "#0078D7"
         readonly property color baseTextColor: "#0B132D"
-        readonly property color normalFontSize: 15 * dpiToPixelValue
-        readonly property real  bigFontSize:  20 * dpiToPixelValue
-        readonly property real  smallFontSize:  12 * dpiToPixelValue
+        readonly property real  normalFontSize: 15 * Settings.dpiToPixelValue
+        readonly property real  bigFontSize:  20 * Settings.dpiToPixelValue
+        readonly property real  smallFontSize:  12 * Settings.dpiToPixelValue
+        readonly property color splitterColor: "lightgray"
+
     }
 
 
