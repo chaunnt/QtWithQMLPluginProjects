@@ -1,0 +1,43 @@
+<RCC>
+    <qresource prefix="/Applications">
+        <file>QML/BaseApp.qml</file>
+        <file>QML/BaseQMLSettings.qml</file>
+        <file>QML/BaseScreen.qml</file>
+        <file>Translations/BaseActionStrings.qml</file>
+        <file>Translations/BaseStrings.qml</file>
+    </qresource>
+    <qresource prefix="/Controls">
+        <file>QML/Button/BaseButton.qml</file>
+        <file>QML/Layout/BaseLayout.qml</file>
+        <file>QML/Theme/DarkMode.qml</file>
+        <file>QML/Theme/NormalMode.qml</file>
+        <file>QML/Theme/Theme.qml</file>
+        <file>QML/Button/Bootstrap_DropDown.qml</file>
+        <file>QML/Button/Bootstrap_TextboxWithIcon.qml</file>
+        <file>QML/Button/Bootstrap_RadioButtons.qml</file>
+        <file>QML/Controls/Bootstrap_RadioButtonList.qml</file>
+        <file>QML/Controls/Bootstrap_DropdownPanel.qml</file>
+        <file>QML/Dialogs/Bootstrap_ProcessBarDialog.qml</file>
+        <file>QML/Controls/Bootstrap_ProcessBar.qml</file>
+        <file>QML/Dialogs/Bootstrap_MessageDialog.qml</file>
+        <file>QML/Dialogs/Bootstrap_WaitingDialog.qml</file>
+        <file>QML/Rectangles/VerticalHalfRounded.qml</file>
+        <file>QML/Controls/Bootstrap_Text.qml</file>
+        <file>QML/Button/Bootstrap_RoundButton.qml</file>
+        <file>QML/Theme/Icons.qml</file>
+        <file>QML/Button/Bootstrap_Button.qml</file>
+        <file>QML/AppBar/AppBarWithIconAndText.qml</file>
+        <file>QML/AppBar/AppBarWithTextAndBackKeyOnly.qml</file>
+        <file>QML/Rectangles/HorizontalHalfRounded.qml</file>
+        <file>QML/Controls/Bootstrap_TextboxWithLabel.qml</file>
+        <file>QML/AppBar/AppBarWithIconOnly.qml</file>
+        <file>QML/Rectangles/InkWellRectangle.qml</file>
+        <file>QML/Button/Bootstrap_ButtonWithIcon.qml</file>
+        <file>QML/Controls/MaskIcon.qml</file>
+        <file>QML/Controls/Bootstrap_TextboxNakedWithHeader.qml</file>
+        <file>QML/Controls/Bootstrap_TabBar.qml</file>
+        <file>QML/Dialogs/Bootstrap_TumblerDialog.qml</file>
+        <file>QML/Controls/Bootstrap_Tumbler.qml</file>
+        <file>QML/Controls/Bootstrap_Toast.qml</file>
+    </qresource>
+</RCC>

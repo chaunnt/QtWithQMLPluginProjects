@@ -1,16 +1,29 @@
-import QtQuick 2.9
+import QtQuick 2.0
 import QtQuick.Controls 2.0
 import BasePlugins 1.0
 
 Item{
     id: itemDropDown
-    property var model
+    property var model: [""]
     property string currentTextValue: ""
-    property string placeHolderText: "Abc"
+    property int currentIndex: -1
+    property string placeHolderText: "placeHolderText"
     // Option
     property int itemHeight: Settings.baseButtonHeight
+
     property int fontSize: Theme.general.normalFontSize
-    property color baseColor: "gray"
+    property color backgroundColor: "transparent"
+    property color borderColor: "transparent"
+    property color selectedColor: "transparent"
+    property color disabledColor: "lightgray"
+    property color buttonTextColor: Theme.general.baseTextColor
+    property color itemTextColor: Theme.general.baseTextColor
+    property bool hidenIcon: false
+    property bool allowMultiSelect: false
+    property int totalSelected: currentSelectedValues.length
+    property var currentSelectedValues:[0]
+    property bool isNaked: false
+    property string iconUrl: "qrc:/Applications/Images/control_dropdown.png"
 
     Rectangle {
         id: recDisplay
@@ -18,15 +31,18 @@ Item{
         height: parent.height
         radius: 5 * Settings.dpiToPixelValue
         y: parent.height / 2 - height / 2
-        color: "transparent"
+        color: backgroundColor
+        border.width: border.color !== "transparent" ? 1 : 0
+        border.color: isNaked === false ? borderColor : "transparent"
         Text{
             id: txtDisplay
-            text: currentTextValue === "" ? placeHolderText : currentTextValue
+            text: currentTextValue === "" ? placeHolderText : (totalSelected > 1 ? "..." : currentTextValue)
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
             height: parent.height
             width: parent.width - imgIcon.width
-            color: itemDropDown.enabled ? baseColor : "lightgray"
+            x: 5 * Settings.dpiToPixelValue
+            color: itemDropDown.enabled ? buttonTextColor : disabledColor
             font.pixelSize: fontSize
             elide: Text.ElideRight
         }
@@ -34,17 +50,19 @@ Item{
             id: imgIcon
             width: 10 * Settings.dpiToPixelValue
             height: width
-            source: "qrc:/Applications/Images/control_dropdown.png"
+            source: iconUrl
             anchors.right: parent.right
             anchors.rightMargin: 5 * Settings.dpiToPixelValue
             y:parent.height / 2 - height / 2
+            visible: !hidenIcon
         }
-//        Rectangle{
-//            anchors.bottom: parent.bottom
-//            height: 1
-//            width: parent.width
-//            color: itemDropDown.enabled ? "black" : "lightgray"
-//        }
+        Rectangle {
+            width: parent.width
+            height: 1
+            color: Theme.general.splitterColor
+            visible: isNaked
+            anchors.bottom: parent.bottom
+        }
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -75,7 +93,7 @@ Item{
 
             Rectangle {
                 id: recBackGround
-                border.color: baseColor
+                border.color: itemDropDown.borderColor
                 radius: 5 * Settings.dpiToPixelValue
                 anchors.fill: parent
             }
@@ -84,13 +102,15 @@ Item{
                 id: lvComboboxPopup
                 width: itemDropDown.width
                 height: lvComboboxPopup.count > 10 ? itemHeight * 10 : itemHeight * lvComboboxPopup.count
-                x: 1 * Settings.dpiToPixelValue
+                y: recBackGround.radius
                 snapMode: ListView.SnapToItem
                 boundsBehavior: Flickable.StopAtBounds
                 clip: true
                 delegate: Item {
+                    id:itemMenuItem
                     width: itemDropDown.width - 2 * Settings.dpiToPixelValue
                     height: itemHeight
+                    property bool selected: currentSelectedValues.indexOf(index) >= 0
                     Text{
                         id: txtComboboxNameItem
                         text: modelData
@@ -98,16 +118,26 @@ Item{
                         horizontalAlignment: Text.AlignLeft
                         x: 5 * Settings.dpiToPixelValue
                         height: parent.height
-                        width: parent.width - 10 * Settings.dpiToPixelValue
-                        color: "black"
+                        width: parent.width - 10 * Settings.dpiToPixelValue - (allowMultiSelect ? parent.height / 2 + 10 * Settings.dpiToPixelValue : 0)
+                        color: itemTextColor
                         font.pixelSize: fontSize
                         elide: Text.ElideRight
+                    }
+                    Rectangle{
+                        height: parent.height / 2
+                        width: height
+                        visible: allowMultiSelect
+                        radius: 5 * Settings.dpiToPixelValue
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10 * Settings.dpiToPixelValue
+                        color: itemMenuItem.selected ? selectedColor : disabledColor
                     }
                     Rectangle{
                         anchors.bottom: parent.bottom
                         width: parent.width
                         height: 1
-                        color: "#DCDCDC"
+                        color: disabledColor
                         visible: index < lvComboboxPopup.count -1
                     }
                     MouseArea {
@@ -115,16 +145,37 @@ Item{
                         hoverEnabled: true
 
                         onClicked: {
-                            console.log("onclicked")
-                            itemDropDown.currentTextValue = txtComboboxNameItem.text
-                            console.log(itemDropDown.currentTextValue)
-                            menuCombobox.close()
+                            if(allowMultiSelect){
+                                if(itemMenuItem.selected){
+                                    currentSelectedValues.splice(currentSelectedValues.indexOf(index),1)
+                                }else{
+                                    currentSelectedValues.push(index);
+                                }
+
+                                if(currentSelectedValues.length > 0){
+                                    var lastIndex = currentSelectedValues[0]
+                                    itemDropDown.currentTextValue = itemDropDown.model[lastIndex].toString()
+                                    itemDropDown.currentIndex = index
+                                }
+
+                                if(currentSelectedValues.indexOf(index) >= 0){
+                                    itemMenuItem.selected = true
+                                }else{
+                                    itemMenuItem.selected = false
+                                }
+
+                                totalSelected = currentSelectedValues.length
+                            }else{
+                                itemDropDown.currentTextValue = txtComboboxNameItem.text
+                                itemDropDown.currentIndex = index
+                                menuCombobox.close()
+                            }
                         }
                         onEntered: {
-                            txtComboboxNameItem.color = baseColor
+                            txtComboboxNameItem.color = selectedColor
                         }
                         onExited: {
-                            txtComboboxNameItem.color = "black"
+                            txtComboboxNameItem.color = itemTextColor
                         }
                     }
                 }

@@ -9,7 +9,7 @@ Item {
     Rectangle {
         width: parent.width
         height: parent.height
-        color: "#AAE5E5E5"
+        color: Theme.general.appDialogBackGroundColor
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -57,7 +57,7 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        Action.dispatch(ActionStrings.dialogActions.cancelProcessBarDialog, {percentageValue: popupDialog.percentageValue})
+                        Action.dispatch(BaseActionStrings.dialogActions.cancelProcessBarDialog, {percentageValue: popupDialog.percentageValue})
                     }
                 }
             }
@@ -65,7 +65,7 @@ Item {
         ActionListener {
             actions: ["ProcessBarFinished"]
             onTriggered: {
-                Action.dispatch(ActionStrings.dialogActions.closeProcessBarDialog)
+                Action.dispatch(BaseActionStrings.dialogActions.closeProcessBarDialog)
             }
         }
     }

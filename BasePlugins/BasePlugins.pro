@@ -18,6 +18,9 @@ version = 1.0
 SOURCES += BasePlugins.cpp
 HEADERS += BasePlugins.h
 
+SOURCES += Control/QmlClipboardAdapter.cpp
+HEADERS += Control/QmlClipboardAdapter.h
+
 SOURCES += Actions/ActionDispatcher.cpp
 HEADERS += Actions/ActionDispatcher.h
 
@@ -46,8 +49,10 @@ unix {
     INSTALLS += target qmldir
 }
 
-RESOURCES += qml.qrc
-RESOURCES += images.qrc
+RESOURCES += \
+    baseplugins_images.qrc \
+    baseplugins_qml.qrc
+RESOURCES +=
 
 !include(../QMLPluginsCommon.pri) {
     error("Couldn't include QMLPluginsCommon.pri")

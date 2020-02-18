@@ -16,7 +16,6 @@ ApplicationInitializer::ApplicationInitializer(QObject* parent)
 
 void ApplicationInitializer::startStartupSequence()
 {
-    qDebug() << Q_FUNC_INFO;
     // Init Framework singleton
     const auto& pFrameworkOwner = FrameworkOwner::getInstance();
     pFrameworkOwner->createObjects();
@@ -34,18 +33,22 @@ void ApplicationInitializer::startStartupSequence()
 
 void ApplicationInitializer::initializeApplication()
 {
-    qDebug() << Q_FUNC_INFO;
+    _finializedStartup();
+}
+
+void ApplicationInitializer::initializeApplicationData()
+{
     // Init Setting singleton
     SettingOwner* pSettingOwner = SettingOwner::getInstance();
 
     // load app settings
     pSettingOwner->getSettingsManager()->loadHostSettings();
-
     pSettingOwner->getSettingsManager()->loadAuthenticationSettings();
 
     setInitProcess(c_Process_FinishLoadSettings);
 
-    _finializedStartup();
+    const auto& pGeneralManager = SystemFunctionsOwner::getInstance()->getGeneralManager();
+
 }
 
 void ApplicationInitializer::_finializedStartup()

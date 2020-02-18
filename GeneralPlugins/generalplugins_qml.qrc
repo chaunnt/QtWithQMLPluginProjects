@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>QML/PolicyScreen.qml</file>
+        <file>QML/Translations/GeneralActionStrings.qml</file>
+        <file>QML/Translations/GeneralPluginsStrings.qml</file>
+        <file>QML/GeneralHomeScreen.qml</file>
+    </qresource>
+</RCC>

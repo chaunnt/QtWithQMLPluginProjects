@@ -30,12 +30,13 @@ QMAKE_LFLAGS *= -L../Framework
 LIBS *= -L../Framework -lFramework
 
 TARGET = $$qtLibraryTarget($$TARGET)
+INSTALLS += $$TARGET_INSTALL_PATH
 
-unix {
-    target.path = $$TARGET_INSTALL_PATH
-    INSTALLS += target
+#unix {
+#    target.path = $$TARGET_INSTALL_PATH
+#    INSTALLS += target
 
-    strip.path = $$TARGET_INSTALL_PATH
-    strip.extra = $$QMAKE_STRIP $(INSTALL_ROOT)/$$TARGET_INSTALL_PATH/lib$${TARGET}.$${QMAKE_EXTENSION_SHLIB}
-    INSTALLS += strip
-}
+#    strip.path = $$TARGET_INSTALL_PATH
+#    strip.extra = $$QMAKE_STRIP $(INSTALL_ROOT)/$$TARGET_INSTALL_PATH/lib$${TARGET}.$${QMAKE_EXTENSION_SHLIB}
+#    INSTALLS += strip
+#}

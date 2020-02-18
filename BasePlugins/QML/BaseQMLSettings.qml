@@ -23,7 +23,7 @@ QtObject {
     /*!
         The basic height of 1 button
      */
-    readonly property real baseButtonHeight: 40 * dpiToPixelValue
+    readonly property real baseButtonHeight: (Qt.platform.os === "ios" ? 60 : 40) * dpiToPixelValue
 
     /*!
         The DPI assumed when designing with density-independent pixels
@@ -56,8 +56,13 @@ QtObject {
     }
 
     property string activeScreenName: ""
+    property string backKeyAction: ""
 
     Component.onCompleted: {
-        dpiToPixelValue = appDPI
+        if(Qt.platform.os === "ios"){
+            dpiToPixelValue = appDPI * scaleRatio
+        }else{
+            dpiToPixelValue = appDPI
+        }
     }
 }

@@ -129,6 +129,16 @@ void FileManagerBase::getLoginByPhone(QString& strPhoneNumber, QString& strPassw
     file.close();
 }
 
+void FileManagerBase::removeLoginInfo()
+{
+    QFile file(LOGIN_INFO);
+
+    if (file.exists())
+    {
+        file.remove();
+    }
+}
+
 ///
 /// \brief add log to log file
 /// \param strLog: log detail

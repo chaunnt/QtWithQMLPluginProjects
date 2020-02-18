@@ -10,12 +10,12 @@ SUBDIRS += \
     SystemFunctions \
     BasePlugins \
     GeneralPlugins \
-
-    BaseApp
+    BaseApp #This module must be the last module on build ordered
 
 CONFIG += ordered
 Setting.depends = Framework
 SystemFunctions.depends = Framework Setting
-BasePlugins = Framework Setting SystemFunctions
+BasePlugins.depends = Framework Setting SystemFunctions
 GeneralPlugins.depends = BasePlugins SystemFunctions Framework
+#This module must be the last module on build ordered
 BaseApp.depends = BasePlugins GeneralPlugins SystemFunctions Framework Setting

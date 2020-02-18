@@ -14,8 +14,10 @@ version = 1.0
 }
 
 # Input
-SOURCES += GeneralPlugins.cpp
-HEADERS += GeneralPlugins.h
+SOURCES += GeneralPlugins.cpp \
+    SideMenuPresenter.cpp
+HEADERS += GeneralPlugins.h \
+    SideMenuPresenter.h
 
 HEADERS += GeneralPresenter.h
 SOURCES += GeneralPresenter.cpp
@@ -38,8 +40,10 @@ unix {
     INSTALLS += target qmldir
 }
 
-RESOURCES += qml.qrc
-RESOURCES += images.qrc
+RESOURCES += \
+    generalplugins_images.qrc \
+    generalplugins_qml.qrc
+RESOURCES +=
 
 !include(../QMLPluginsCommon.pri) {
     error("Couldn't include QMLPluginsCommon.pri")

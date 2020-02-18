@@ -6,6 +6,7 @@
 #include "Utils/QtSingleton.h"
 #include "CommonFunctions/CommonFunctions.h"
 #include "DBCommunication/DBLocalBase.h"
+#include "ServerCommunication/ServerBase.h"
 
 //#define TRACE_LOG(log) qDebug() << Q_FUNC_INFO << "(" << __LINE__ << ")" << log
 //#define TRACE_NAKED(log) qDebug() << log
@@ -31,9 +32,10 @@ public:
 
     DBLocalBase* getDBLocalBase();
     CommonFunctions* getCommonFunctions();
+    ServerBase* getServerBase();
 private:
 
-
+    QScopedPointer<ServerBase> m_pServerBase; ///Owner of this object
     QScopedPointer<CommonFunctions> m_pCommonFunctions; ///Owner of this object
     QScopedPointer<DBLocalBase> m_pDBLocalBase; ///Owner of this object
 

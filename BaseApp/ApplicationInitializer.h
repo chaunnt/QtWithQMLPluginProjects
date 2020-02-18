@@ -14,6 +14,7 @@ public:
 
     Q_INVOKABLE void startStartupSequence();
     Q_INVOKABLE void initializeApplication();
+    Q_INVOKABLE void initializeApplicationData();
 
     Q_SIGNAL void initFinished();
 

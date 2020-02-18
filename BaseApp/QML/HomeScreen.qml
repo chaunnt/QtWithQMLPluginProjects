@@ -4,48 +4,48 @@ import GeneralPlugins 1.0
 
 BaseScreen {
     screenName: "HomeScreen"
+    property string indexScreenSource: "" //TODO: we must add source for first screen
     Loader {
         id:appLoader
-        anchors.top: recHeader.bottom
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.fill: parent
     }
 
     Component.onCompleted: {
-        appLoader.setSource("qrc:/QML/LotteryHomeScreen.qml")
+        appLoader.setSource(indexScreenSource)
     }
 
     ActionListener {
-        actions: ["DisplayLottery"]
+        actions: ["Initialize"]
         onTriggered: {
-            appLoader.setSource("qrc:/QML/LotteryHomeScreen.qml")
+            switch(action){
+            default:
+                appLoader.setSource(indexScreenSource)
+                break;
+            }
         }
     }
 
-    Rectangle {
-        id:recHeader
-        width: parent.width
-        height: Settings.baseButtonHeight
-        color: Theme.general.baseColor
-        Text {
-            text: Settings.activeScreenName
-            font.pixelSize: Theme.general.bigFontSize
-            anchors.centerIn: parent
-            color: Theme.general.baseTextColor
-        }
-        Image {
-            source: "qrc:/Applications/Images/LeftArrow_White.png"
-            fillMode: Image.PreserveAspectFit
-            height: parent.height * 80 / 100
-            width: height
-            anchors.verticalCenter: parent.verticalCenter
-            x: 5
-            visible: Settings.activeScreenName !== "HomeScreen"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-
+    SideMenu {
+        id:appSideMenu
+        anchors.fill: parent
+        visible: false
+        ActionListener {
+            actions: [
+                BaseActionStrings.baseApp.displaySideMenu,
+                BaseActionStrings.baseApp.closeSideMenu,
+            ]
+            onTriggered: {
+                switch (action)
+                {
+                case BaseActionStrings.baseApp.displaySideMenu:
+                    appSideMenu.open()
+                    break;
+                case BaseActionStrings.baseApp.closeSideMenu:
+                    appSideMenu.close()
+                    break;
+                default:
+                    appSideMenu.visible = false
+                    break;
                 }
             }
         }

@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>QML/PolicyScreen.qml</file>
-    </qresource>
-</RCC>

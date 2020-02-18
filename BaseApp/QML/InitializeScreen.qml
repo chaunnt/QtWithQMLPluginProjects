@@ -2,45 +2,38 @@ import QtQuick 2.0
 import BasePlugins 1.0
 
 Item {
+    property bool finishInit: false
+    property bool splashFinish: false
+
+    function finalizeInitiation(){
+        Action.dispatch(BaseActionStrings.dialogActions.closeWaitingDialog)
+        Action.dispatch(BaseActionStrings.baseApp.initFinished)
+    }
+
     Component.onCompleted: {
         applicationInitializer.startStartupSequence();
         applicationInitializer.initializeApplication();
     }
 
-    Image {
-        id: imgLogo
-        source: "qrc:/Applications/Images/AppBanner.png"
-        fillMode: Image.PreserveAspectFit
-        width: parent.width / 4 * 3
-        anchors.centerIn: parent
-    }
     Connections {
         target: applicationInitializer
         onInitFinished: {
-            Action.dispatch(ActionStrings.baseApp.initFinished)
+            finishInit = true
+            splashFinish = true
+            if(splashFinish){
+                finalizeInitiation()
+            }
         }
     }
-
-    Text {
-        id: txtInitMessage
-        text: applicationInitializer.initMessage
-        width: parent.width - 20 * Settings.dpiToPixelValue
-        anchors.bottom: itemInitProcess.top
-        anchors.bottomMargin: 5 * Settings.dpiToPixelValue
-        anchors.horizontalCenter: parent.horizontalCenter
-        height: Settings.baseButtonHeight
-        font.pixelSize: Theme.general.normalFontSize
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        elide: Text.ElideRight
+    Rectangle {
+        anchors.fill: parent
+        color: Theme.general.splashBackgroundColor
     }
-    Bootstrap_ProcessBar {
-        id: itemInitProcess
-        width: parent.width - 20 * Settings.dpiToPixelValue
-        height: Settings.baseButtonHeight
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10 * Settings.dpiToPixelValue
-        anchors.horizontalCenter: parent.horizontalCenter
-        percentageValue: applicationInitializer.initProcess
+    Image {
+        id: imgLogo
+        source: "qrc:/Applications/Images/AppLogo.png"
+        fillMode: Image.PreserveAspectFit
+        width: parent.width / 4 * 3
+        anchors.centerIn: parent
     }
 }

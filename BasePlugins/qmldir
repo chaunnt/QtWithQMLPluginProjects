@@ -1,6 +1,7 @@
 module BasePlugins
 plugin BasePlugins
 classname BasePlugins
-typeinfo plugins.qmltypes
-depends QtQuick 2.0
-depends QtQuick.Controls 2.0
+#typeinfo plugins.qmltypes
+#depends QtQuick 2.0
+#depends QtQuick.Controls 2.0
+#depends QtWebView 1.1

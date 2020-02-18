@@ -1,0 +1,44 @@
+<RCC>
+    <qresource prefix="/Applications">
+        <file>Images/control_dropdown.png</file>
+        <file>Images/AppBanner.png</file>
+        <file>Images/AppIcon.png</file>
+        <file>Images/AppLogo.png</file>
+        <file>Images/Spinner_Black.png</file>
+        <file>Images/LeftArrow_White.png</file>
+        <file>Images/Refresh_Black.png</file>
+        <file>Images/TrashBin.png</file>
+        <file>Images/Menu_White.png</file>
+        <file>Images/waiting_cursor.gif</file>
+        <file>Images/Notification.png</file>
+        <file>Images/Home_Black.png</file>
+        <file>Images/List_Black.png</file>
+        <file>Images/notification-icon.png</file>
+        <file>Images/Report_Black.png</file>
+        <file>Images/Viral_Black.png</file>
+        <file>Images/Wallet_Black.png</file>
+        <file>Images/Account_Black.png</file>
+        <file>Images/Money_Black.png</file>
+        <file>Images/Cup_Blue.png</file>
+        <file>Images/Cup_White.png</file>
+        <file>Images/Glory_Gold.png</file>
+        <file>Images/Glory_White.png</file>
+        <file>Images/Ticket_Gold.png</file>
+        <file>Images/Ticket_White.png</file>
+        <file>Images/Wallet_White.png</file>
+        <file>Images/Wallet_Blue.png</file>
+        <file>Images/Contact_Blue.png</file>
+        <file>Images/History_Blue.png</file>
+        <file>Images/Home_Blue.png</file>
+        <file>Images/List_Blue.png</file>
+        <file>Images/Logout_Blue.png</file>
+        <file>Images/Question_Blue.png</file>
+        <file>Images/Report_Blue.png</file>
+        <file>Images/Reward_Blue.png</file>
+        <file>Images/RightArrow_Black.png</file>
+        <file>Images/Vertical_DashLine.png</file>
+        <file>Images/Check_Green.png</file>
+        <file>Images/Location_Blue.png</file>
+        <file>Images/Telephone_Blue.png</file>
+    </qresource>
+</RCC>

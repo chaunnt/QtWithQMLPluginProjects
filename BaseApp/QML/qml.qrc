@@ -4,5 +4,6 @@
         <file>SplashScreen.qml</file>
         <file>HomeScreen.qml</file>
         <file>InitializeScreen.qml</file>
+        <file>SideMenu.qml</file>
     </qresource>
 </RCC>

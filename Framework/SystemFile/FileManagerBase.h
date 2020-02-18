@@ -17,6 +17,8 @@ public:
     void saveLoginWithPhone(QString strPhoneNumber, QString strPassword);
     void getLoginByPhone(QString &strPhoneNumber, QString &strPassword);
 
+    void removeLoginInfo();
+
     static void addEventLog(QString strLog);
 
 };

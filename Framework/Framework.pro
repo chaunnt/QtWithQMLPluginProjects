@@ -37,12 +37,12 @@ HEADERS += $$PWD/SystemFile/FileManagerBase.h
 SOURCES += $$PWD/DBCommunication/DBLocalBase.cpp
 HEADERS += $$PWD/DBCommunication/DBLocalBase.h
 
-unix {
-    target.path = $$TARGET_INSTALL_PATH
-    INSTALLS += target
+#unix {
+#    target.path = $$TARGET_INSTALL_PATH
+#    INSTALLS += target
 
-    strip.path = $$TARGET_INSTALL_PATH
-    strip.extra = $$QMAKE_STRIP $(INSTALL_ROOT)/$$TARGET_INSTALL_PATH/lib$${TARGET}.$${QMAKE_EXTENSION_SHLIB}
-    INSTALLS += strip
-}
+#    strip.path = $$TARGET_INSTALL_PATH
+#    strip.extra = $$QMAKE_STRIP $(INSTALL_ROOT)/$$TARGET_INSTALL_PATH/lib$${TARGET}.$${QMAKE_EXTENSION_SHLIB}
+#    INSTALLS += strip
+#}
 

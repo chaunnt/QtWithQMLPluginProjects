@@ -1,12 +1,8 @@
 #include "GeneralPresenter.h"
 
-GeneralPresenter::GeneralPresenter(QObject * parent)
+GeneralPresenter::GeneralPresenter(QObject* parent)
     : QObject(parent)
 {
-
 }
 
-GeneralPresenter::~GeneralPresenter()
-{
-
-}
+GeneralPresenter::~GeneralPresenter() {}

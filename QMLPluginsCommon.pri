@@ -22,11 +22,12 @@ android {
     INSTALLS += samples
 }
 CONFIG -= android_install
+
 unix:!android {
     #create plugins.type file by using qmlplugindump
     qmakePath = $$QMAKE_QMAKE
     qmlplugindumpPath = $$replace(qmakePath, qmake, qmlplugindump)
     message($$TARGET)
     message($$PWD)
-    system($$qmlplugindumpPath $$TARGET 1.0 $$PWD/$$TARGET/QML > $$installPath/plugins.type)
+    system($$qmlplugindumpPath $$TARGET 1.0 $$PWD/$$TARGET/QML > $$installPath/plugins.qmltypes)
 }

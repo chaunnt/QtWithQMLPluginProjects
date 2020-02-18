@@ -9,7 +9,7 @@ Item {
     Rectangle {
         width: parent.width
         height: parent.height
-        color: "#AAE5E5E5"
+        color: Theme.general.appDialogBackGroundColor
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -37,9 +37,9 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 elide: Text.ElideRight
             }
-            Image {
+             AnimatedImage {
                 id: imgWaitingIndicator
-                source: "qrc:/Applications/Images/Spinner_Black.png"
+                source: "qrc:/Applications/Images/waiting_cursor.gif"
                 height: Settings.baseButtonHeight
                 width: Settings.baseButtonHeight
                 fillMode: Image.PreserveAspectFit
@@ -68,7 +68,7 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        Action.dispatch(ActionStrings.dialogActions.cancelWaitingDialog)
+                        Action.dispatch(BaseActionStrings.dialogActions.cancelWaitingDialog)
                     }
                 }
             }

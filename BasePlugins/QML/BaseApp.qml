@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import BasePlugins 1.0
 
-BaseScreen {
+Item {
     Rectangle{
         anchors.fill: parent
         color: Theme.general.appBackgroundColor

@@ -9,7 +9,7 @@ Item {
     Rectangle {
         width: parent.width
         height: parent.height
-        color: "#AAE5E5E5"
+        color: Theme.general.appDialogBackGroundColor
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -22,7 +22,7 @@ Item {
             height: txtPopupMessage.height + txtCancelMessage.height + 10 * Settings.dpiToPixelValue
             color: "white"
             radius: 10 * Settings.dpiToPixelValue
-            border.color: "gray"
+            border.color: Theme.general.splitterColor
             border.width: 1
             anchors.centerIn: parent
             Text {
@@ -52,7 +52,7 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        Action.dispatch(ActionStrings.dialogActions.closeMessageDialog)
+                        Action.dispatch(BaseActionStrings.dialogActions.closeMessageDialog)
                     }
                 }
             }

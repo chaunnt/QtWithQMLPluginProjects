@@ -4,6 +4,8 @@
 TEMPLATE = lib
 TARGET = SystemFunctions
 CONFIG += c++11
+QT += core sql
+
 win32 {
     CONFIG += staticlib
 }
@@ -31,14 +33,14 @@ DEPENDPATH += . ../Setting
 LIBS += -L../Framework/ -lFramework
 LIBS += -L../Setting/ -lSetting
 
-unix {
-    target.path = $$TARGET_INSTALL_PATH
-    INSTALLS += target
+#unix {
+#    target.path = $$TARGET_INSTALL_PATH
+#    INSTALLS += target
 
-    strip.path = $$TARGET_INSTALL_PATH
-    strip.extra = $$QMAKE_STRIP $(INSTALL_ROOT)/$$TARGET_INSTALL_PATH/lib$${TARGET}.$${QMAKE_EXTENSION_SHLIB}
-    INSTALLS += strip
-}
+#    strip.path = $$TARGET_INSTALL_PATH
+#    strip.extra = $$QMAKE_STRIP $(INSTALL_ROOT)/$$TARGET_INSTALL_PATH/lib$${TARGET}.$${QMAKE_EXTENSION_SHLIB}
+#    INSTALLS += strip
+#}
 
 TARGET = $$qtLibraryTarget($$TARGET)
 INSTALLS += $$TARGET_INSTALL_PATH

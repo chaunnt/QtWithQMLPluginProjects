@@ -1,11 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
-
+import QtQuick.Window 2.3
 import BasePlugins 1.0
 import GeneralPlugins 1.0
-import LotteryPlugins 1.0
 
-ApplicationWindow {
+Window {
     id: mainSmartAds
 
     visible: true
@@ -15,7 +14,7 @@ ApplicationWindow {
     // as the setting size (in main mobile app, it should be 1280)
     // The main impact may be the Flickable with its scrolled content. But now the content for it is variable depended on
     // the charts which is currently displaying. This result now is good, since we do not need to worry about this change
-    height: 1000 //1280
+    height: 1000//1280
 
     property QtObject runtimeSetting: QtObject {
         property string activeApp: ""
@@ -27,24 +26,40 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+
+
+    Clipboard{
+        id:clipboard
+    }
+
+    Bootstrap_Toast{
+        id: toast
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10 * Settings.dpiToPixelValue
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
     ActionListener {
-        actions: [ActionStrings.baseApp.initFinished]
+        actions: [BaseActionStrings.baseApp.initFinished]
         onTriggered: {
             mainLoader.setSource("qrc:/HomeScreen.qml")
         }
     }
 
     ActionListener {
-        actions: [ActionStrings.baseApp.startInitSequence]
+        actions: [BaseActionStrings.baseApp.startInitSequence]
         onTriggered: {
             mainLoader.setSource("qrc:/InitializeScreen.qml")
         }
     }
 
     Component.onCompleted: {
+        if (Qt.platform.os === "ios" || Qt.platform.os === "android"){
+            firebaseLoader.setSource("qrc:/FirebaseObject.qml")
+        }
         mainLoader.setSource("qrc:/SplashScreen.qml")
     }
-    
+
     Item {
         id: popupItem
         anchors.fill: parent
@@ -55,13 +70,13 @@ ApplicationWindow {
         Bootstrap_MessageDialog {
             anchors.fill: parent
             popupMessage: popupItem.popupMessage
-            visible: popupItem.popupAction === ActionStrings.dialogActions.showMessageDialog
+            visible: popupItem.popupAction === BaseActionStrings.dialogActions.showMessageDialog
         }
         Bootstrap_ProcessBarDialog {
             id: popupBootstrap_ProcessBarDialog
             anchors.fill: parent
             popupMessage: popupItem.popupMessage
-            visible: popupItem.popupAction === ActionStrings.dialogActions.showProcessBarDialog
+            visible: popupItem.popupAction === BaseActionStrings.dialogActions.showProcessBarDialog
             Binding {
                 target: popupBootstrap_ProcessBarDialog
                 property: "percentageValue"
@@ -72,32 +87,34 @@ ApplicationWindow {
         Bootstrap_WaitingDialog {
             anchors.fill: parent
             popupMessage: popupItem.popupMessage
-            visible: popupItem.popupAction === ActionStrings.dialogActions.showWaitingDialog
+            visible: popupItem.popupAction === BaseActionStrings.dialogActions.showWaitingDialog
         }
         ActionListener {
             actions: [
-                ActionStrings.dialogActions.showProcessBarDialog,
-                ActionStrings.dialogActions.showMessageDialog,
-                ActionStrings.dialogActions.showWaitingDialog
+                BaseActionStrings.dialogActions.showProcessBarDialog,
+                BaseActionStrings.dialogActions.showMessageDialog,
+                BaseActionStrings.dialogActions.showWaitingDialog
             ]
             onTriggered: {
                 popupItem.visible = true
-                if(data.settingObject !== undefined){
-                    popupItem.settingObject = data.settingObject
-                    popupItem.settingName = data.settingName
+                if(data !== undefined){
+                    if(data.settingObject !== undefined){
+                        popupItem.settingObject = data.settingObject
+                        popupItem.settingName = data.settingName
+                    }
+                    popupItem.popupMessage = data.popupMessage
                 }
-                popupItem.popupMessage = data.popupMessage
                 popupItem.popupAction = action
             }
         }
 
         ActionListener {
             actions:[
-                ActionStrings.dialogActions.closeProcessBarDialog,
-                ActionStrings.dialogActions.cancelProcessBarDialog,
-                ActionStrings.dialogActions.closeMessageDialog,
-                ActionStrings.dialogActions.closeWaitingDialog,
-                ActionStrings.dialogActions.cancelWaitingDialog
+                BaseActionStrings.dialogActions.closeProcessBarDialog,
+                BaseActionStrings.dialogActions.cancelProcessBarDialog,
+                BaseActionStrings.dialogActions.closeMessageDialog,
+                BaseActionStrings.dialogActions.closeWaitingDialog,
+                BaseActionStrings.dialogActions.cancelWaitingDialog
             ]
             onTriggered: {
                 popupItem.visible = false

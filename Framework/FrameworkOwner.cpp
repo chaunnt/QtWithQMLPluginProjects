@@ -25,6 +25,7 @@ void FrameworkOwner::createObjects()
 {
     m_pDBLocalBase.reset(new DBLocalBase);
     m_pCommonFunctions.reset(new CommonFunctions);
+    m_pServerBase.reset(new ServerBase);
 }
 
 DBLocalBase* FrameworkOwner::getDBLocalBase()
@@ -35,4 +36,9 @@ DBLocalBase* FrameworkOwner::getDBLocalBase()
 CommonFunctions* FrameworkOwner::getCommonFunctions()
 {
     return m_pCommonFunctions.data();
+}
+
+ServerBase* FrameworkOwner::getServerBase()
+{
+    return m_pServerBase.data();
 }

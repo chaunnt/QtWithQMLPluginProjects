@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SystemFunctions/SystemFunctionsOwner.h"
 #include <QObject>
 
 class GeneralPresenter : public QObject

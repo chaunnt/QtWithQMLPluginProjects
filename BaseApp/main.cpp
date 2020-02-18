@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
     // The binary in the desktop build is a level below the root of the project
     // This allows us to find all the plugins, without doing an install.
     engine.addImportPath("..");
+
     QScreen *screen = app.screens()[0];
     double dpi = screen->physicalDotsPerInch();
     dpi-= dpi * 10/100;
@@ -32,7 +33,7 @@ int main(int argc, char* argv[])
     else{
         dpi = 1;//ldpi
     }
-
+    engine.addImportPath("qrc:///");
     engine.rootContext()->setContextProperty("appDPI",dpi);
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())

@@ -9,6 +9,10 @@ Item {
     property var modelList
     property int maxWidth: 100 * Settings.dpiToPixelValue
     property string selectedValue: ""
+    property bool isHorizontal: true
+    property color itemSelectedColor: Theme.general.baseSelectingColor
+    property color itemSelectedBorderColor: Theme.general.baseColor
+
     width: maxWidth
     height: colRadioList.implicitHeight
     Column {
@@ -24,25 +28,56 @@ Item {
             color: fontColor
             font.pixelSize: fontSize
         }
-        Repeater {
-            model: modelList
-            delegate: Bootstrap_RadioButtons {
-                title: modelData
-                titleColor: fontColor
-                selected: selectedValue === title
-                Component.onCompleted: {
-                    if (width > maxWidth){
-                        maxWidth = width
+        Row {
+            visible: isHorizontal
+            Repeater {
+                model: modelList
+                delegate: Bootstrap_RadioButtons {
+                    title: modelData
+                    titleColor: fontColor
+                    selectedColor: itemSelectedColor
+                    backgroundBorderColor: itemSelectedBorderColor
+                    selected: selectedValue === title
+                    Component.onCompleted: {
+                        if (width > maxWidth){
+                            maxWidth = width
+                        }
                     }
-                }
-                onClicked: {
-                    if (selected) {
-                        selectedValue = ""
-                    }else{
-                        selectedValue = title
+                    onClicked: {
+                        if (selected) {
+                            selectedValue = ""
+                        }else{
+                            selectedValue = title
+                        }
                     }
                 }
             }
         }
+        Column {
+            visible: !isHorizontal
+            Repeater {
+                model: modelList
+                delegate: Bootstrap_RadioButtons {
+                    title: modelData
+                    titleColor: fontColor
+                    selectedColor: itemSelectedColor
+                    backgroundBorderColor: itemSelectedBorderColor
+                    selected: selectedValue === title
+                    Component.onCompleted: {
+                        if (width > maxWidth){
+                            maxWidth = width
+                        }
+                    }
+                    onClicked: {
+                        if (selected) {
+                            selectedValue = ""
+                        }else{
+                            selectedValue = title
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
